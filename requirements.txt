@@ -1,0 +1,14 @@
+matplotlib
+numpy
+pandas
+Pillow
+plotly
+railroad
+scikit-learn
+sentence_transformers
+spacy
+streamlit
+streamlit_option_menu
+textacy
+umap-learn
+wordcloud
