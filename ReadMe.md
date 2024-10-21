@@ -1,123 +1,114 @@
-# **Multi-Model Text Summarization with Vectorization Insights**
+# Document Similarity Checker - README
 
-This Streamlit app allows users to generate and compare summaries using multiple NLP models and visualize word vectorization insights. It integrates **T5**, **Pegasus**, and **DistilBART** models for summarization and provides detailed text analysis through **CountVectorizer** and **TfidfVectorizer**.
+## Overview
 
----
+The **Document Similarity Checker** is a Streamlit application that compares two input texts by extracting key words using **TF-IDF** and calculating **cosine similarity** between them. This app provides an interactive analysis with a scatter plot visualization of the top TF-IDF words from both texts using **Plotly**. It helps users understand how similar two documents are and offers insights into word distributions and TF-IDF scores.
 
-## **Features**
-1. **Multi-Model Summarization:**
-   - Generate summaries using **T5**, **Pegasus**, and **DistilBART**.
-   - Compare summaries across models.
+## Features
 
-2. **Vectorization-Based Word Analysis:**
-   - Visualize the top 10 words based on **word frequency** (CountVectorizer) and **TF-IDF score** (TfidfVectorizer).
-   - Interactive bar plots to display the results.
-
-3. **Detailed Text Analysis:**
-   - Compare the original text and the summarized versions.
-   - Analyze **stop words removal** and unique words from the input text.
-
-4. **Highlighted Summaries:**
-   - Top words from vectorization are highlighted in the generated summaries.
-
-5. **Comparison of Highlighted Words:**
-   - Evaluate how many of the top 10 words are used by each summarization model.
+- **Text Input Fields:** Allows users to input two documents for comparison.
+- **Cosine Similarity Calculation:** Measures the similarity between the two input texts.
+- **TF-IDF Word Extraction:** Displays the top words with the highest TF-IDF scores for each document.
+- **Interactive Scatter Plot:** Visualizes TF-IDF scores for the top words using Plotly with blue and green markers.
+- **Detailed Text Analysis:** Provides insights on the total words, stop words removed, and unique words in both documents.
 
 ---
 
-## **Technologies Used**
-- **Streamlit:** Web framework for the interactive user interface.
-- **Transformers Library:** Summarization models including **T5**, **Pegasus**, and **DistilBART**.
-- **scikit-learn:** Vectorization tools (**CountVectorizer**, **TfidfVectorizer**).
-- **Matplotlib:** Visualization of word rankings.
+## Installation
+
+1. **Clone the repository** or copy the code into your local project.
+2. **Install dependencies:**
+
+   Run the following command to install the required packages:
+   ```bash
+   pip install streamlit scikit-learn plotly
+   ```
+
+3. **Run the Streamlit app:**
+   ```bash
+   streamlit run app.py
+   ```
 
 ---
 
-## **How to Run the App Locally**
+## Code Explanation
 
-### Prerequisites
-Make sure you have Python installed on your system. Then, install the required dependencies:
+1. **Libraries Used:**
+   - `streamlit`: For creating the web interface.
+   - `numpy`: For numerical operations.
+   - `re`: For text analysis using regular expressions.
+   - `scikit-learn`: For implementing **TF-IDF Vectorizer** and **cosine similarity**.
+   - `plotly`: For creating interactive scatter plots.
 
-```bash
-pip install streamlit matplotlib scikit-learn transformers
-```
+2. **Text Input:**  
+   The app allows users to enter two pieces of text for comparison using Streamlit's `text_area`.
 
-### Run the App
-1. Save the Python code as `app.py`.
-2. Open a terminal in the directory where `app.py` is located.
-3. Run the following command:
+3. **TF-IDF Calculation:**  
+   It extracts the top 20 words with the highest **TF-IDF scores** from each text using `TfidfVectorizer`.
 
-```bash
-streamlit run app.py
-```
+4. **Cosine Similarity:**  
+   The cosine similarity score is computed to quantify the similarity between the two documents.
 
-4. The app will open in your browser at `http://localhost:8501`.
+5. **Plotly Scatter Plot:**  
+   An interactive scatter plot is generated with **blue markers** for Text 1 and **green markers** for Text 2. It helps visualize the TF-IDF scores for the top words from both texts.
 
----
-
-## **App Layout and Workflow**
-
-1. **Input Section:**  
-   - Paste the text you want to summarize in the provided text box.
-
-2. **Summarization Models:**  
-   - Generate summaries by clicking the **Analyze Text and Generate Summaries** button.
-   - The summaries from **T5**, **Pegasus**, and **DistilBART** will be displayed with highlighted key words.
-
-3. **Detailed Text Analysis:**  
-   - See the total words, words in the summary, stop words removed, and unique words after stop word removal.
-
-4. **Comparison of Highlighted Words:**  
-   - Check how many top words from vectorization are used in each summary.
-
-5. **Word Analysis Visualization:**  
-   - View the top 10 words by **word frequency** and **TF-IDF score** using interactive bar charts.
+6. **Text Analysis:**  
+   The app provides a detailed analysis of the total words, stop words removed, and unique words in both texts.
 
 ---
 
-## **Screenshots (Optional)**
-- **Summarization Results:** Display multiple summaries with highlighted top words.
-- **Detailed Text Analysis:** Comparison of word statistics between the input and summaries.
-- **Word Ranking Plots:** Interactive bar charts for word frequency and TF-IDF scores.
+## How to Use
+
+1. **Enter Text:**  
+   Enter two different pieces of text in the provided input fields.
+
+2. **Click "Check Similarity":**  
+   Press the button to perform the analysis.
+
+3. **View Results:**
+   - **Cosine Similarity Score:** Displays how similar the two documents are.
+   - **Detailed Text Analysis:** Shows word statistics for both texts.
+   - **Scatter Plot:** Provides a visual comparison of the top TF-IDF words.
 
 ---
 
-## **Customization Options**
+## Example Usage
 
-1. **CSS Styling:**
-   - The application includes custom CSS to style different sections with padding, rounded corners, and color themes.
+1. **Input Texts:**
+   - Text 1: "The quick brown fox jumps over the lazy dog."
+   - Text 2: "The fast fox leaped over the sleepy hound."
 
-2. **Model Adjustments:**
-   - The summarization models used (T5, Pegasus, DistilBART) can be replaced with other models from the `transformers` library.
+2. **Cosine Similarity Score:**  
+   Displays a similarity score (e.g., `0.1016`).
 
-3. **Height Adjustment:**
-   - Adjust the height of the input text area by modifying `height=200` in the `st.text_area()` function.
-
----
-
-## **Known Issues**
-
-- **Performance:** Large input texts may take longer to process due to the summarization models.
-- **Dependencies:** Ensure all dependencies are installed correctly to avoid import errors.
+3. **Scatter Plot:**  
+   An interactive plot with TF-IDF word scores, where Text 1 is represented with **blue markers** and Text 2 with **green markers**.
 
 ---
 
-## **Contributing**
+## Dependencies
 
-If you'd like to contribute to this project, feel free to fork the repository and submit a pull request.
-
----
-
-## **License**
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+- Python 3.7+
+- Streamlit
+- scikit-learn
+- Plotly
 
 ---
 
-## **Contact**
+## Future Improvements
 
-If you have any questions or issues, feel free to reach out.
+- Add support for **more advanced similarity algorithms** (e.g., Jaccard similarity).
+- Provide **stopword customization** options for users.
+- Save and export the results as **PDF or CSV reports**.
 
 ---
 
-This README file provides all the necessary details to set up, run, and understand the functionalities of your Streamlit app. Let me know if you need further customization!
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+## Contact
+
+For questions or feedback, please contact [Anurag Patil](https://www.linkedin.com).
